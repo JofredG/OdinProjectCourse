@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple DOM example</title>
+    <style>
+      .highlight {
+        color: white;
+        background-color: black;
+        padding: 10px;
+        width: 250px;
+        text-align: center;
+      }
+    </style>
+
+  </head>
+  <body>
+      <section>
+        <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+        <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+      </section>
+      <script>
+        const link = document.querySelector("a");
+        link.textContent = "Mozilla Developer Network";
+        link.href = "https://developer.mozilla.org";
+        const sect = document.querySelector("section");
+        const para = document.createElement("p");
+        para.textContent = "We hope you enjoyed the ride.";
+        sect.appendChild(para);
+
+        const text = document.createTextNode(
+            " - the premier source for web development knowledge.",
+        );
+        const linkPara = document.querySelector("p");
+        linkPara.appendChild(text);// adds the text to the first instance of <p>
+        sect.appendChild(linkPara);// does not make a copy of linkPara rather it moves it to the bottom
+        // use Node.cloneNode() to make a copy of a node (element)
+
+        //sect.removeChild(linkPara); 
+        //linkPara.remove(); // remove a node based only on a reference to itself
+        //linkPara.parentNode.removeChild(linkPara); //for older browsers
+
+        ////Manipulating styles w Javascript. This actually adds inline styling to the DOM and can be seen in the DOM inspector
+        //para.style.color = "white";
+        //para.style.backgroundColor = "black";
+        //para.style.padding = "10px";
+        //para.style.width = "250px";
+        //para.style.textAlign = "center";
+
+        para.setAttribute("class", "highlight"); //this is prob the way they would change a buttons color based on an event
+
+      </script>
+  </body>
+</html>

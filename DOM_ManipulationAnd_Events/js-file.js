@@ -51,17 +51,19 @@ function alertFunction() {
 const btn = document.querySelector("#btn");
 
 // METHOD 2
-//btn.onclick = alertFunction;
+btn.onclick = alertFunction;
+// or
+btn.onclick = () => alert("Hello World");
 
 // METHOD 3
 //btn.addEventListener("click", alertFunction);
 
-// e parameter contains an object that references infromation about the event's TARGET (ELEMENT)
+//// e parameter contains an object that references infromation about the event's TARGET (ELEMENT)
 btn.addEventListener("click", function (e) {
-  console.log(e.target);
+  console.log(e.target, e);
 });
 
-// elaboration of the previous example
+//// elaboration of the previous example
 btn.addEventListener("click", function (e) {
   e.target.style.background = "blue";
 });
