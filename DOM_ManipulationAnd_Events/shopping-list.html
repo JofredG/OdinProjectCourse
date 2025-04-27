@@ -39,15 +39,15 @@
 
         function addRemoveItem(){
 
-                text = user_input.value;
+                const text = user_input.value;
                 if (text === '') return; // Don't add empty lines
 
                 //console.log(text);
                 user_input.value = '';
                 
-                list_item = document.createElement("li");
-                span = document.createElement("span");
-                rm_button = document.createElement("button");
+                const list_item = document.createElement("li");
+                const span = document.createElement("span");
+                const rm_button = document.createElement("button");
 
 
                 span.textContent = text;
@@ -57,9 +57,10 @@
                 list_item.appendChild(rm_button);
                 items_list.appendChild(list_item);
 
-                rm_button.onclick = () => {
-                    list_item.remove();
-                };
+                rm_button.addEventListener('click', () => {
+                    items_list.removeChild(list_item);
+                });
+
 
                 user_input.focus();
         };
