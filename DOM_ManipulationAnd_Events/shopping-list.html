@@ -22,7 +22,8 @@
 
     <div>
       <label for="item">Enter a new item:</label>
-      <input type="text" name="item" id="item">
+      <!--<input type="text" name="item" id="item">-->
+      <textarea name="item" id="item" rows="2" cols="30"></textarea>
       <button id="addButton">Add item</button>
     </div>
 
@@ -32,23 +33,28 @@
 
     <script>
         const items_list = document.querySelector("ul"); 
-        const user_input = document.querySelector("input");
+        const user_input = document.querySelector("textarea");
         const add_button = document.querySelector("#addButton");
         add_button.textContent = "Add item to list"
-            add_button.onclick = () => {
+
+        function addRemoveItem(){
+
                 text = user_input.value;
+                if (text === '') return; // Don't add empty lines
+
                 //console.log(text);
                 user_input.value = '';
                 
                 list_item = document.createElement("li");
                 span = document.createElement("span");
                 rm_button = document.createElement("button");
-                list_item.appendChild(span);
-                list_item.appendChild(rm_button);
+
 
                 span.textContent = text;
                 rm_button.textContent = "Delete";
 
+                list_item.appendChild(span);
+                list_item.appendChild(rm_button);
                 items_list.appendChild(list_item);
 
                 rm_button.onclick = () => {
@@ -57,6 +63,21 @@
 
                 user_input.focus();
         };
+
+        //Allow call to addRemoveItem on 'add_button.onclick'
+        add_button.onclick = addRemoveItem;
+
+        //Allow pressing 'Enter' in the input element to call addRemoveItem too
+        user_input.addEventListener("keydown", (event)=> {
+            if (event.key === "Enter" && !event.shiftKey){
+                event.preventDefault(); // Stop default (Like submitting a form)
+                addRemoveItem();
+            }
+
+        });
+
+
+
 
     </script>
   </body>
