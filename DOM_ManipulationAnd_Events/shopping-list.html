@@ -76,6 +76,12 @@
 
         });
 
+        user_input.addEventListener("input", () =>{
+            user_input.style.height = "auto"; // Reset the height
+            user_input.style.height = (user_input.scrollHeight) + "px"; // Set it to the scroll height
+        });
+
+
 
 
 
